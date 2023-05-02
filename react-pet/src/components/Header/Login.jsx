@@ -1,4 +1,5 @@
 import styles from './Header.module.scss'
+import MyButton from '../UI/Button/MyButton'
 
 function Login(props) {
   const handleClick = () => {
@@ -8,7 +9,7 @@ function Login(props) {
     return (
       <div className={ styles.headerContainerBtn }>
         ГЦ, ты всё сломал
-        <button onClick={handleClick}>Починить!</button> 
+        <MyButton onClick={handleClick}>Починить!</MyButton> 
       </div>
     )
   }
@@ -17,7 +18,7 @@ function Login(props) {
       <div>
         { props.clicks } вжато раз
       </div>
-      <button onClick={handleClick}>вжми меня!</button> 
+      <MyButton onClick={handleClick}>вжми меня!</MyButton> 
     </div>
   )
 }

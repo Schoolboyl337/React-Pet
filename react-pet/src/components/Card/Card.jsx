@@ -1,4 +1,5 @@
 import classes from './Card.module.scss'
+import MyButton from '../UI/Button/MyButton'
 
 function Card({item}) {
   return (
@@ -9,7 +10,7 @@ function Card({item}) {
       <div>
         Цена: <span>{ item.price }</span>
       </div>
-      <button>Купить</button>
+      <MyButton>Купить</MyButton>
     </div>
   )
 }
