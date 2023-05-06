@@ -1,16 +1,16 @@
 import classes from './Card.module.scss'
 import MyButton from '../UI/Button/MyButton'
 
-function Card({item}) {
+function Card({item,...props}) {
   return (
     <div className={classes.cardContainer}>
       <div>
         { item.title }
       </div>
       <div>
-        Цена: <span>{ item.price }</span>
+        Цена: <span>{ item.price }$</span>
       </div>
-      <MyButton>Купить</MyButton>
+      <MyButton onClick={() => props.deleteCard(item)}>Купить</MyButton>
     </div>
   )
 }

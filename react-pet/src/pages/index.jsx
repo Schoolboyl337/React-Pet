@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Card from '../components/Card/Card'
-import classes from './index.module.scss'
+import CardList from '../components/Card/CardList'
+import Form from '../components/Form/Form'
 
 function Index(props) {
   const [cards,setCards] = useState([
@@ -8,11 +8,19 @@ function Index(props) {
     {id:2, title:'Dangen Master', price: 300},
     {id:3, title:'A4', price: 1000}
   ])
+
+  const addCard = (newCard) => {
+    setCards([...cards, newCard])
+  }
+
+  const deleteCard = (card) => {
+    setCards(cards.filter(item => item.id !== card.id))
+  }
+
   return (
-    <div className={classes.index}>
-        {cards.map(card => 
-            <Card item={card} key={card.id}></Card>
-        )}
+    <div>
+      <Form createCard={addCard}></Form>
+      <CardList cards={cards} deleteCard={deleteCard}></CardList>
     </div>
   )
 }

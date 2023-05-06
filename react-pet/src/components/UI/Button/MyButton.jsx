@@ -1,6 +1,6 @@
 import classes from './MyButton.module.scss'
 
-function Button({children,...props}) {
+function MyButton({children,...props}) {
   return (
     <button {...props} className={classes.btn}>
       { children }
@@ -8,4 +8,4 @@ function Button({children,...props}) {
   )
 }
 
-export default Button
+export default MyButton
