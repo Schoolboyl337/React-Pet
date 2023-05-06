@@ -20,7 +20,11 @@ function Index(props) {
   return (
     <div>
       <Form createCard={addCard}></Form>
-      <CardList cards={cards} deleteCard={deleteCard}></CardList>
+      {cards.length !== 0 
+        ? <CardList cards={cards} deleteCard={deleteCard}></CardList>
+        : <h2 style={{textAlign: "center"}}>Ты всё купил!</h2>
+      }
+      
     </div>
   )
 }
