@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import CardList from '../components/Card/CardList'
+import CardFilter from '../components/Filter/CardFilter'
 import Form from '../components/Form/Form'
-import MySelect from '../components/UI/Select/MySelect'
 
 function Index(props) {
   const [cards,setCards] = useState([
@@ -10,15 +10,24 @@ function Index(props) {
     {id:3, title:'A4', price: '1000'}
   ])
 
-  const [selectedSort, setSelectedSort] = useState('')
+  const [filter, setFilter] = useState({
+    sort:'',
+    query:''
+  })
+
+  const sortedCards = useMemo(()=> {
+    if(filter.sort) {
+      return [...cards].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]))
+    }
+    return cards
+  },[filter.sort,cards])
+
+  const sortedAndSerchedCards = useMemo(()=> {
+    return sortedCards.filter(card => card.title.toLowerCase().includes(filter.query.toLowerCase()))
+  },[filter.query, sortedCards])
 
   const addCard = (newCard) => {
     setCards([...cards, newCard])
-  }
-
-  const selectSort = (sort) => {
-    setSelectedSort(sort)
-    setCards([...cards].sort((a, b) => a[sort].localeCompare(b[sort])))
   }
 
   const deleteCard = (card) => {
@@ -28,21 +37,16 @@ function Index(props) {
   return (
     <div>
       <Form createCard={addCard}></Form>
-      <MySelect
-        value={selectedSort}
-        onChange={selectSort}
-        defaultValue="Сортировать по"
-        options= {[
-          {value:'title', name:'По названию'},
-          {value:'price', name:'По цене'},
-        ]}
+      <CardFilter
+        filter={filter}
+        setFilter={setFilter}
       />
-      { cards.length
+      { sortedAndSerchedCards.length
         ? 
-        <CardList cards={cards} deleteCard={deleteCard}></CardList>
+        <CardList cards={sortedAndSerchedCards} deleteCard={deleteCard}></CardList>
         : 
         <h2 style={{textAlign: "center"}}>
-          Ты всё купил!
+          Ну типа ничего нет
         </h2>
       }
       
