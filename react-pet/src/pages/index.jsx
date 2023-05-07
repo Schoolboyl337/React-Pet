@@ -41,15 +41,7 @@ function Index(props) {
         filter={filter}
         setFilter={setFilter}
       />
-      { sortedAndSerchedCards.length
-        ? 
-        <CardList cards={sortedAndSerchedCards} deleteCard={deleteCard}></CardList>
-        : 
-        <h2 style={{textAlign: "center"}}>
-          Ну типа ничего нет
-        </h2>
-      }
-      
+      <CardList cards={sortedAndSerchedCards} deleteCard={deleteCard}></CardList>
     </div>
   )
 }
