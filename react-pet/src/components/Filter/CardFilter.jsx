@@ -1,4 +1,3 @@
-import classes from './CardFilter.module.scss'
 import MyInput from '../UI/Input/MuInput'
 import MySelect from '../UI/Select/MySelect'
 
@@ -16,7 +15,7 @@ function CardFilter({filter, setFilter}) {
       defaultValue="Сортировать по"
       options= {[
         {value:'title', name:'По названию'},
-        {value:'price', name:'По цене'},
+        {value:'price', name:'По цене'}, // TODO пофиксить сравнение цен, сейчас сравниваются как строки
       ]}
     />
   </>

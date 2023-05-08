@@ -1,6 +1,5 @@
 import classes from './CardList.module.scss'
 import Card from './Card'
-import { useState, useRef } from 'react'
 function CardList({cards,deleteCard,...props}) {
   if (!cards.length) {
     return (

@@ -1,7 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import CardList from '../components/Card/CardList'
 import CardFilter from '../components/Filter/CardFilter'
 import Form from '../components/Form/Form'
+import MyButton from '../components/UI/Button/MyButton'
+import MyModal from '../components/UI/Modal/MyModal'
+import { useCards } from '../hooks/useCards'
 
 function Index(props) {
   const [cards,setCards] = useState([
@@ -14,20 +17,12 @@ function Index(props) {
     sort:'',
     query:''
   })
-
-  const sortedCards = useMemo(()=> {
-    if(filter.sort) {
-      return [...cards].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]))
-    }
-    return cards
-  },[filter.sort,cards])
-
-  const sortedAndSerchedCards = useMemo(()=> {
-    return sortedCards.filter(card => card.title.toLowerCase().includes(filter.query.toLowerCase()))
-  },[filter.query, sortedCards])
+  const [modal, setModal] = useState(false)
+  const sortedAndSerchedCards = useCards (cards, filter.sort, filter.query)
 
   const addCard = (newCard) => {
     setCards([...cards, newCard])
+    setModal(false)
   }
 
   const deleteCard = (card) => {
@@ -36,7 +31,15 @@ function Index(props) {
 
   return (
     <div>
-      <Form createCard={addCard}></Form>
+      <MyButton onClick={()=> setModal(true)}>
+        Добавить карточку товара
+      </MyButton>
+      <MyModal 
+        isVisible={modal}
+        setVisible={setModal}
+      > 
+        <Form createCard={addCard}></Form>
+      </MyModal>
       <CardFilter
         filter={filter}
         setFilter={setFilter}

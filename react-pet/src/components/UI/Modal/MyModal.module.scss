@@ -1,0 +1,20 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  &Content {
+    padding: 25px;
+    min-width: 250px;
+    background-color: antiquewhite;
+    border-radius: 20px;
+  }
+  &.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
