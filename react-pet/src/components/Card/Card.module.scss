@@ -2,7 +2,12 @@
   &Container {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     border: 1px solid antiquewhite;
+
+    & div {
+      text-align: center;
+    }
   }
 }

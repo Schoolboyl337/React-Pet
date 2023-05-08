@@ -8,7 +8,7 @@ function Card({item,...props}) {
         { item.title }
       </div>
       <div>
-        Цена: <span>{ item.price }$</span>
+        Цена: <span>{ item.body.length }$</span>
       </div>
       <MyButton onClick={() => props.deleteCard(item)}>Купить</MyButton>
     </div>

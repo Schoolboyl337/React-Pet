@@ -1,3 +1,5 @@
+import axios from 'axios'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import CardList from '../components/Card/CardList'
 import CardFilter from '../components/Filter/CardFilter'
@@ -7,11 +9,7 @@ import MyModal from '../components/UI/Modal/MyModal'
 import { useCards } from '../hooks/useCards'
 
 function Index(props) {
-  const [cards,setCards] = useState([
-    {id:1, title:'Pivo', price: '100'},
-    {id:2, title:'Dangen Master', price: '300'},
-    {id:3, title:'A4', price: '1000'}
-  ])
+  const [cards,setCards] = useState([])
 
   const [filter, setFilter] = useState({
     sort:'',
@@ -19,6 +17,15 @@ function Index(props) {
   })
   const [modal, setModal] = useState(false)
   const sortedAndSerchedCards = useCards (cards, filter.sort, filter.query)
+
+  useEffect(()=> {
+    getCardsResponse()
+  })
+
+  async function getCardsResponse() {
+    const responce = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    setCards(responce.data)
+  }
 
   const addCard = (newCard) => {
     setCards([...cards, newCard])
