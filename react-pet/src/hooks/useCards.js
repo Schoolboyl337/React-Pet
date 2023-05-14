@@ -3,7 +3,11 @@ import { useMemo } from "react";
 export const useSortedCards = (cards, sort) => {
   const sortedCards = useMemo(() => {
     if (sort) {
-      return [...cards].sort((a, b) => a[sort].localeCompare(b[sort]));
+      if (sort !== "body") {
+        return [...cards].sort((a, b) => a[sort].localeCompare(b[sort]));
+      } else {
+        return [...cards].sort((a, b) => a[sort].length - b[sort].length);
+      }
     }
     return cards;
   }, [sort, cards]);

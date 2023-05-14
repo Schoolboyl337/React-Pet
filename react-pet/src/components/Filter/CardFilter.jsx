@@ -15,7 +15,7 @@ function CardFilter({filter, setFilter}) {
       defaultValue="Сортировать по"
       options= {[
         {value:'title', name:'По названию'},
-        {value:'price', name:'По цене'}, // TODO пофиксить сравнение цен, сейчас сравниваются как строки
+        {value:'body', name:'По цене'},
       ]}
     />
   </>
