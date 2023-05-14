@@ -1,15 +1,22 @@
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import PostService from '../Api/PostService'
 import CardList from '../components/Card/CardList'
 import CardFilter from '../components/Filter/CardFilter'
 import Form from '../components/Form/Form'
 import MyButton from '../components/UI/Button/MyButton'
+import MyLoader from '../components/UI/Loader/MyLoader'
 import MyModal from '../components/UI/Modal/MyModal'
+import { useRequest } from '../hooks/useRequest'
 import { useCards } from '../hooks/useCards'
 
 function Index(props) {
   const [cards,setCards] = useState([])
+  const [getCardsResponse, error, isCardsLoading] =  useRequest( async ()=> {
+    const arrayCards = await PostService.getCards()
+    setCards(arrayCards)
+  })
 
   const [filter, setFilter] = useState({
     sort:'',
@@ -20,12 +27,8 @@ function Index(props) {
 
   useEffect(()=> {
     getCardsResponse()
-  })
+  },[])
 
-  async function getCardsResponse() {
-    const responce = await axios.get('https://jsonplaceholder.typicode.com/posts')
-    setCards(responce.data)
-  }
 
   const addCard = (newCard) => {
     setCards([...cards, newCard])
@@ -45,13 +48,19 @@ function Index(props) {
         isVisible={modal}
         setVisible={setModal}
       > 
-        <Form createCard={addCard}></Form>
+        <Form createCard={addCard}/>
       </MyModal>
       <CardFilter
         filter={filter}
         setFilter={setFilter}
       />
-      <CardList cards={sortedAndSerchedCards} deleteCard={deleteCard}></CardList>
+      {error &&
+        <h2>Ну типа случалась ошибка {error}</h2>
+      }
+      {isCardsLoading
+        ? <MyLoader/>
+        : <CardList cards={sortedAndSerchedCards} deleteCard={deleteCard}></CardList>
+      }
     </div>
   )
 }
