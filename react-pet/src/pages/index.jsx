@@ -24,10 +24,7 @@ function Index(props) {
   })
   const [modal, setModal] = useState(false)
   const sortedAndSerchedCards = useCards (cards, filter.sort, filter.query)
-  const pagesArray = getPagesArray(totalPages)
 
-  console.log(pagesArray)
-  
   const [getCardsResponse, error, isCardsLoading] =  useRequest( async ()=> {
     const responce = await PostService.getCards(limit,page)
     setCards(responce.data)
@@ -35,9 +32,14 @@ function Index(props) {
     
     setTotalPages(getPageCount(totalCounts, limit))
   })
+
+  const changePage = (page) => {
+    setPage(page)
+  }
+
   useEffect(()=> {
     getCardsResponse()
-  },[])
+  },[page])
 
   const addCard = (newCard) => {
     setCards([...cards, newCard])
@@ -70,7 +72,7 @@ function Index(props) {
         ? <MyLoader/>
         : <CardList cards={sortedAndSerchedCards} deleteCard={deleteCard}></CardList>
       }
-      <Pagination pagesArray={pagesArray} />
+      <Pagination changePage={changePage} page={page} totalPages={totalPages} />
     </div>
   )
 }
