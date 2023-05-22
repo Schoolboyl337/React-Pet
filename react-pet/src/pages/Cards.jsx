@@ -11,6 +11,7 @@ import MyModal from '../components/UI/Modal/MyModal'
 import { useRequest } from '../hooks/useRequest'
 import { useCards } from '../hooks/useCards'
 import Pagination from '../components/Pagination/Pagination'
+import styles from './Cards.module.scss'
 
 function Cards(props) {
   const [cards,setCards] = useState([])
@@ -50,7 +51,7 @@ function Cards(props) {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <MyButton onClick={()=> setModal(true)}>
         Добавить карточку товара
       </MyButton>

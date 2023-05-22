@@ -1,5 +1,6 @@
 import classes from './Card.module.scss'
 import MyButton from '../UI/Button/MyButton'
+import { Link } from 'react-router-dom'
 
 function Card({item,...props}) {
   return (
@@ -10,7 +11,14 @@ function Card({item,...props}) {
       <div>
         Цена: <span>{ item.body.length }$</span>
       </div>
-      <MyButton onClick={() => props.deleteCard(item)}>Купить</MyButton>
+      <div className={classes.cardContainerBtns}>
+        <MyButton>
+          <Link to={item.id}>
+            Посмотреть
+          </Link>
+        </MyButton>
+        <MyButton onClick={() => props.deleteCard(item)}>Купить</MyButton>
+      </div>
     </div>
   )
 }

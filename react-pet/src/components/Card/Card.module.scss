@@ -6,6 +6,12 @@
     align-items: center;
     border: 1px solid antiquewhite;
 
+    &Btns {
+      display: flex;
+      width: 100%;
+      justify-content: space-evenly;
+    }
+
     & div {
       text-align: center;
     }
