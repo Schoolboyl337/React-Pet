@@ -13,7 +13,7 @@ function Card({item,...props}) {
       </div>
       <div className={classes.cardContainerBtns}>
         <MyButton>
-          <Link to={item.id}>
+          <Link to={`${item.id}`}>
             Посмотреть
           </Link>
         </MyButton>

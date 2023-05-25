@@ -13,4 +13,11 @@ export default class PostService {
     );
     return responce;
   }
+
+  static async getCardById(id) {
+    const responce = await axios.get(
+      `https://jsonplaceholder.typicode.com/posts/${id}`
+    );
+    return responce;
+  }
 }

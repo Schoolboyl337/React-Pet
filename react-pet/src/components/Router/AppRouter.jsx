@@ -11,12 +11,12 @@ const router = createBrowserRouter([
   {
     path: "/cards",
     element: <Cards/>,
-    children: [
-      {
-        path: "cards/:Id",
-        element: <Card />,
-      },
-    ],
+    
+  },
+  {
+    path: "cards/:Id",
+    element: <Card />,
+    
   },
   {
     path: "/test",
