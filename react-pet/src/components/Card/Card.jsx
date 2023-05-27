@@ -12,7 +12,7 @@ function Card({item,...props}) {
         Цена: <span>{ item.body.length }$</span>
       </div>
       <div className={classes.cardContainerBtns}>
-        <MyButton>
+        <MyButton className={classes.btn}>
           <Link to={`${item.id}`}>
             Посмотреть
           </Link>

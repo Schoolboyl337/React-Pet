@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useRequest } from '../hooks/useRequest'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import MyLoader from '../components/UI/Loader/MyLoader'
+import MyButton from '../components/UI/Button/MyButton'
 import PostService from '../Api/PostService'
 import styles from './Card.module.scss'
 
@@ -24,6 +25,11 @@ function CardSlug(props) {
   }, [])
     return (
       <>
+      <MyButton className={styles.btn}>
+        <Link to='/cards'>
+          Назад
+        </Link>
+      </MyButton>
         {isCardLoading
         ? <MyLoader/>
         : <div className={styles.container}>

@@ -11,7 +11,7 @@ function Form({createCard,...props}) {
     const newCard = {
       id: Date.now(),
       title,
-      price: price.current.value
+      body: price.current.value
     }
     createCard(newCard);
     setTitle('');
