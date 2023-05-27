@@ -8,7 +8,6 @@ import styles from './Card.module.scss'
 
 function CardSlug(props) {
  const params = useParams()
- console.log(params.Id)
  const [card, setCard] = useState({})
  const [comment, setComment] = useState([])
  const [getCardById, error, isCardLoading] = useRequest( async () => {
@@ -49,7 +48,7 @@ function CardSlug(props) {
         : <div>
             <h4>Коментарии пользователей:</h4>
             {comment.map( comment =>
-            <div className={styles.containerComment}>
+            <div key={comment.id} className={styles.containerComment}>
                <div>
                 Пользователь: {comment.email}
               </div> 
