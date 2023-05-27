@@ -1,0 +1,24 @@
+.container {
+	display: flex;
+  flex-direction: column;
+	margin: 20px;
+	border: 2px solid antiquewhite;
+  align-items: center;
+
+  &Comment {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 5px;
+    border: 1px solid antiquewhite;
+
+    & div {
+      border: 1px solid blanchedalmond;
+      padding: 5px;
+    }
+  }
+}
+
+h4 {
+  text-align: center;
+}

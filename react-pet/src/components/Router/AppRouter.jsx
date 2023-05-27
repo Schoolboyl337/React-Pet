@@ -2,7 +2,7 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import Cards from "../../pages/Cards";
-import Card from "../../pages/Card";
+import CardSlug from "../../pages/Card";
 import Test from "../../pages/Test";
 import Error from "../../pages/Error";
 import Index from "../../pages";
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     path: "cards/:Id",
-    element: <Card />,
+    element: <CardSlug />,
     
   },
   {
